@@ -1,11 +1,11 @@
-const read = require('../utils/read');
+const read = require('../../utils/read');
 
 const input = read(__dirname);
 
 const fuelCalculator = (mass) => Math.floor(mass / 3) - 2
 
 const recursiveFuelCalculator = (mass) => {
-	const fuel = fuelCalculator(mass)
+	const fuel = fuelCalculator(mass);
 	if (fuel > 0)
 		return fuel + recursiveFuelCalculator(fuel)
 	return 0;
