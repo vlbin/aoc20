@@ -22,15 +22,15 @@ const A = (arr, target) => {
 const B = (arr, target) => {
 	let values = new Map();
 	let result = null;
-	arr.forEach((x) => {
-		arr.forEach((y, j) => {
+	for (let x of arr) {
+		for (let [index, y] of arr.entries()) {
 			let remainder = target - x - y;
 			if (values.has(remainder)) {
 				result = remainder * x * y;
 			}
-			values.set(y, j);
-		})
-	})
+			values.set(y, index);
+		}
+	}
 	return result;
 }
 
