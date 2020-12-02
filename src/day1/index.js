@@ -1,9 +1,7 @@
 const read = require('../utils/read');
 
-let data = read(__dirname).split('\r\n').map(x => parseInt(x)).sort();
-let testData = [1721, 979, 366, 299, 675, 1456];
+let data = read(__dirname).split('\r\n').map(x => parseInt(x));
 data.sort((a, b) => a - b);
-
 
 // Complexity: O(n)
 const A = (arr, target) => {
@@ -17,6 +15,7 @@ const A = (arr, target) => {
 	}
 }
 
+// Complexity: O(n^2)
 const B = (arr, target) => {
 	let values = new Map();
 	for (let x of arr) {
