@@ -29,10 +29,9 @@ const B = () => {
 		[1, 2],
 	];
 	let result = 1;
-	for (let slope of slopes) {
-		result *= calcSlope(slope[1], slope[0]);
-	}
+	slopes.forEach(slope => result *= calcSlope(slope[1], slope[0]))
 	return result;
 }
+
 console.log(A())
 console.log(B())
