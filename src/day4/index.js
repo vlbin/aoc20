@@ -25,8 +25,8 @@ let required = {
 const A = () => {
 	let validPassports = passports.filter((passport) => {
 		for (let field of Object.keys(required)) {
-			let res = passport.get(field);
-			if (res == null) {
+			let passportField = passport.get(field);
+			if (passportField == null) {
 				return false;
 			}
 		}
@@ -39,8 +39,8 @@ const A = () => {
 const B = () => {
 	let validPassports = passports.filter((passport) => {
 		for (let field of Object.keys(required)) {
-			let res = passport.get(field);
-			if (res == null || !required[field](res)) {
+			let passportField = passport.get(field);
+			if (passportField == null || !required[field](passportField)) {
 				return false;
 			}
 		}
