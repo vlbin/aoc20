@@ -52,5 +52,3 @@ const B = () => {
 
 console.log(A())
 console.log(B())
-
-
