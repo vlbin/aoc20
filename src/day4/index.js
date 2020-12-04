@@ -6,11 +6,7 @@ let passports = data
 	.map(passport => passport
 		.replace(/\n/g, ' ')
 		.split(' ')
-		.reduce((result, item) => {
-			let key = item.substring(0, 3);
-			result.set(key, item.substring(4));
-			return result;
-		}, new Map()));
+		.reduce((result, item) => result.set(item.substring(0,3), item.substring(4)), new Map()));
 
 let required = {
 	byr: (value) => parseInt(value) >= 1920 && parseInt(value) <= 2002,
@@ -19,10 +15,7 @@ let required = {
 	hgt: (value) => {
 		let unit = value.slice(-2);
 		value = value.slice(0, -2);
-		if (unit === 'cm')
-			return value >= 150 && value <= 193
-		else if (unit === 'in')
-			return value >= 59 && value <= 76
+		return unit === 'cm' ? value >= 150 && value <= 193 : value >= 59 && value <= 76
 	},
 	hcl: (value) => (/^#[0-9A-F]{6}$/i.test(value)) && value.length === 7,
 	ecl: (value) => ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'].includes(value),
