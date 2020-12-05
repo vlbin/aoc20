@@ -8,6 +8,8 @@ let passports = data
 		.split(' ')
 		.reduce((result, item) => result.set(item.substring(0,3), item.substring(4)), new Map()));
 
+console.log(passports)
+
 let required = {
 	byr: (value) => parseInt(value) >= 1920 && parseInt(value) <= 2002,
 	iyr: (value) => parseInt(value) >= 2010 && parseInt(value) <= 2020,
