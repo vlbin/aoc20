@@ -9,6 +9,7 @@ const containsColor = (color, holders) => {
 			containsColor(rule.split(' ').slice(0, 2).join(' '), holders);
 		}
 	}
+	return holders.size;
 }
 
 const bagMap = () => {
@@ -33,18 +34,9 @@ const sumBags = (map, bag) => {
 	return 1 + (list.reduce((acc, bag) => acc + Object.values(bag)[0] * sumBags(map, Object.keys(bag)[0]), 0));
 }
 
-const A = () => {
-	let color = 'shiny gold'
-	let holders = new Set();
-	containsColor(color, holders)
-	console.log(holders.size)
-}
+const A = () => containsColor('shiny gold', new Set());
 
-const B = () => {
-	let color = 'shiny gold';
-	let bags = bagMap();
-	console.log(sumBags(bags, color) - 1)
-}
+const B = () => sumBags(bagMap(), 'shiny gold') - 1;
 
-A();
-B();
+console.log(A());
+console.log(B());

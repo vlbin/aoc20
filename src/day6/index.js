@@ -14,6 +14,7 @@ const A = (groups) => {
 		}
 		total += groupSet.size
 	}
+	return total;
 }
 
 
@@ -37,10 +38,10 @@ const B = (groups) => {
 				totalForGroup++;
 			}
 		}
-		console.log(totalForGroup)
 		total += totalForGroup;
 	}
-	console.log(total)
+	return total;
 }
 
-B(groups);
+console.log(A(groups));
+console.log(B(groups));
