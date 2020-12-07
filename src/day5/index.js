@@ -1,4 +1,5 @@
 const read = require('../utils/read');
+const { performance } = require('perf_hooks');
 
 let passes = read(__dirname).split(/\n/g);
 
@@ -36,7 +37,11 @@ const B = (list) => {
 		if (!list.includes(seat + 1) && list.includes(seat + 2))
 			return seat + 1;
 	}
-
 }
+let t0 = performance.now();
 console.log(A(seats()));
+let ta = performance.now() - t0;
+t0 = performance.now();
 console.log(B(seats()));
+let tb = performance.now() - t0;
+console.log(ta, tb);
