@@ -17,28 +17,15 @@ const A = (groups) => {
 	return total;
 }
 
-
 const B = (groups) => {
 	groups = groups.map(group => group.split(/\n/g));
 	let total = 0;
 	for (let group of groups) {
-		let totalForGroup = 0;
-		let map = new Map();
-		for (let person of group) {
-			for (let char of person) {
-				if (map.get(char) != null)
-					map.set(char, map.get(char) + 1)
-				else
-					map.set(char, 1)
-			}
+		let all_yes = group[0].split('');
+		for (let answers of group.slice(1)) {
+			all_yes = all_yes.filter(val => answers.split('').includes(val));
 		}
-
-		for (const [key, val] of map.entries()) {
-			if (val === group.length) {
-				totalForGroup++;
-			}
-		}
-		total += totalForGroup;
+		total += all_yes.length;
 	}
 	return total;
 }
