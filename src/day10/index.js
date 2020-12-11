@@ -30,27 +30,22 @@ const A = () => {
 */
 
 let counter = 0;
-const possible_combinations = (memo, set, val, max) => {
-	if (memo.has(val)) return memo.get(val);
-
-	if (val === max) return 1;
-	let res = 0;
-	for (let i = val + 1; i < val + 4; i++) {
-		if (set.has(val)) {
-			counter++;
-			res += possible_combinations(memo, set, i, max)
+const possible_combinations = (list, n) => {
+	let ways_to = new Array(n).fill(0);
+	ways_to[0] = 1;
+	for (let i = 0; i < n - 1; i++) {
+		for (let j = i + 1; j < i + 4; j++) {
+			if (list[j] - list[i] <= 3)
+				ways_to[j] += ways_to[i]
 		}
 	}
-
-	if (set.has(val)) memo[val] = res;
-
-	return res;
+	return ways_to[n - 1]
 }
 
 B = () => {
 	list.push(list[list.length - 1] + 3);
 	list.unshift(0);
-	console.log(possible_combinations(new Map(), new Set(list), 0, list[list.length - 1]))
+	console.log(possible_combinations(list, list.length))
 }
 
 B();
