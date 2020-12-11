@@ -16,36 +16,35 @@ const A = () => {
 
 		prev = element;
 	}
+	return oneJoltCounter * threeJoltCounter;
 }
 
-/*const valid_without = (list, index) => {
-	let ads = [...list];
-	let index = list.indexOf(index)
-	ads.splice(index, 1);
-	for (let i = index; i < index + 2; i++) {
-		if (ads[i] - ads[i - 1] > 3) return false;
-	}
-	return true;
-}
-*/
-
-let counter = 0;
 const possible_combinations = (list, n) => {
+	// ways to get to element in list
 	let ways_to = new Array(n).fill(0);
+
+	// only 1 way to get to the first element
 	ways_to[0] = 1;
 	for (let i = 0; i < n - 1; i++) {
 		for (let j = i + 1; j < i + 4; j++) {
+			// if diff <= 3, we can go from i to j
 			if (list[j] - list[i] <= 3)
+				// all the ways we can go to i, we can also go to j, so add them.
 				ways_to[j] += ways_to[i]
 		}
 	}
+	// return number of ways to get to last element - final answer!
 	return ways_to[n - 1]
 }
 
 B = () => {
+	// add the final element (max + 3)
 	list.push(list[list.length - 1] + 3);
+
+	// add zero to beginning
 	list.unshift(0);
-	console.log(possible_combinations(list, list.length))
+	return possible_combinations(list, list.length)
 }
 
-B();
+console.log(A())
+console.log(B())
